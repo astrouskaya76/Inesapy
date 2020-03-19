@@ -19,3 +19,21 @@ print (h)
 print (bool(()))
 print (bool(""))
 print (bool([]))
+
+
+
+j = int(5)
+if j >3 and j<10:
+  print ("True")
+else:
+  print ("False")
+
+
+
+k = int(5)
+if k >3 or k<=4:
+  print ("True")
+else:
+  print ("False")
+
+
