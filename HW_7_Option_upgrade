@@ -1,0 +1,310 @@
+import unittest
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
+class Chrome(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
+
+    def Chrome_regular(self):
+        driver = self.driver
+        driver.get("http://www.123formbuilder.com/form-5012206/online-quiz")
+        
+        try: #Online Quiz'
+            WebDriverWait(driver,3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//h1[contains(text(),'Online Quiz')]")))
+            print("Online Quiz")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+
+        try:#Animals
+            WebDriverWait(driver,3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='radio-000000082']//label")))
+            print("Chicken is a bird")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+
+        try:  #Longest river
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='radio-0000000a0']//label")))
+            print("Nile is longest river")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  #Invention
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000c-0']//label")))
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000c-1']//label")))
+            print("Telescope, Submarine")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Computer
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000e-0']//label")))
+            print("Software")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Food/protein
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000e-0']//label")))
+            print("Meat")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        driver.implicitly_wait(5)
+
+        print(driver.find_element_by_xpath("//body//div//div//div//a[1]").get_attribute("href"))
+        print(driver.find_element_by_xpath("//body//a[2]").get_attribute("href"))
+        print(driver.find_element_by_xpath("//body//a[3]").get_attribute("href"))
+
+        driver.find_element_by_xpath("//body/form[@id='form']/div/div/div/div/div/input[1]").send_keys(
+            "innadia2014@gmail.com")
+        print("My email")
+
+        driver.find_element_by_class_name("normal-state").click()
+        print("You are all done")
+
+        driver.close()
+
+    def Chrome_1120x550 (self):
+        driver = self.driver
+        driver.set_window_size(1120, 550)
+        driver.get("http://www.123formbuilder.com/form-5012206/online-quiz")
+
+        try:  # Online Quiz'
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//h1[contains(text(),'Online Quiz')]")))
+            print("Online Quiz 1120x550 ")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Animals
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='radio-000000082']//label")))
+            print("Chicken is a bird 1120x550 ")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Longest river
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='radio-0000000a0']//label")))
+            print("Nile is longest river 1120x550 ")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Invention
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000c-0']//label")))
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000c-1']//label")))
+            print("Telescope, Submarine 1120x550 ")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Computer
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000e-0']//label")))
+            print("Software 1120x550 ")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Food/protein
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000e-0']//label")))
+            print("Meat 1120x550 ")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        driver.implicitly_wait(5)
+
+        print(driver.find_element_by_xpath("//body//div//div//div//a[1]").get_attribute("href"))
+        print(driver.find_element_by_xpath("//body//a[2]").get_attribute("href"))
+        print(driver.find_element_by_xpath("//body//a[3]").get_attribute("href"))
+
+        driver.find_element_by_xpath("//body/form[@id='form']/div/div/div/div/div/input[1]").send_keys(
+            "innadia2014@gmail.com")
+        print("My email 1120x550 ")
+
+        driver.find_element_by_class_name("normal-state").click()
+        print("You are all done 1120x550 ")
+
+        driver.close()
+
+    def tearDown(self):
+        self.driver.quit()
+
+class FirefoxSearch(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.maximize_window()
+
+    def Firefox_regular(self):
+        driver = self.driver
+        driver.get("http://www.123formbuilder.com/form-5012206/online-quiz")
+        
+        try: #Online Quiz'
+            WebDriverWait(driver,3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//h1[contains(text(),'Online Quiz')]")))
+            print("Online Quiz Firefox")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+
+        try:#Animals
+            WebDriverWait(driver,3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='radio-000000082']//label")))
+            print("Chicken is a bird Firefox")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+
+        try:  #Longest river
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='radio-0000000a0']//label")))
+            print("Nile is longest river Firefox")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  #Invention
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000c-0']//label")))
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000c-1']//label")))
+            print("Telescope, Submarine Firefox")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Computer
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000e-0']//label")))
+            print("Software Firefox")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Food/protein
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000e-0']//label")))
+            print("Meat Firefox")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        driver.implicitly_wait(5)
+
+        print(driver.find_element_by_xpath("//body//div//div//div//a[1]").get_attribute("href"))
+        print(driver.find_element_by_xpath("//body//a[2]").get_attribute("href"))
+        print(driver.find_element_by_xpath("//body//a[3]").get_attribute("href"))
+
+        driver.find_element_by_xpath("//body/form[@id='form']/div/div/div/div/div/input[1]").send_keys(
+            "innadia2014@gmail.com")
+        print("My email Firefox")
+
+        driver.find_element_by_class_name("normal-state").click()
+        print("You are all done Firefox")
+
+        driver.close()
+
+    def Firefox_1250x850 (self):
+        driver = self.driver
+        driver.get("http://www.123formbuilder.com/form-5012206/online-quiz")
+        
+        try: #Online Quiz'
+            WebDriverWait(driver,3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//h1[contains(text(),'Online Quiz')]")))
+            print("Online Quiz Firefox 1250x850 ")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:#Animals
+            WebDriverWait(driver,3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='radio-000000082']//label")))
+            print("Chicken is a bird Firefox 1250x850 ")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  #Longest river
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='radio-0000000a0']//label")))
+            print("Nile is longest river Firefox 1250x850")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  #Invention
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000c-0']//label")))
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000c-1']//label")))
+            print("Telescope, Submarine Firefox 1250x850")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Computer
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000e-0']//label")))
+            print("Software Firefox  1250x850")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        try:  # Food/protein
+            WebDriverWait(driver, 3). \
+                until(EC.visibility_of_element_located((By.XPATH, "//label[@id='checkbox-0000000e-0']//label")))
+            print("Meat Firefox 1250x850")
+        except Ex.TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file("page_loading_error.png")
+
+        driver.implicitly_wait(5)
+
+        print(driver.find_element_by_xpath("//body//div//div//div//a[1]").get_attribute("href"))
+        print(driver.find_element_by_xpath("//body//a[2]").get_attribute("href"))
+        print(driver.find_element_by_xpath("//body//a[3]").get_attribute("href"))
+
+        driver.find_element_by_xpath("//body/form[@id='form']/div/div/div/div/div/input[1]").send_keys(
+            "innadia2014@gmail.com")
+        print("My email Firefox 1250x850")
+
+        driver.find_element_by_class_name("normal-state").click()
+        print("You are all done Firefox 1250x850")
+
+        driver.close()
+    
+    def tearDown(self):
+        # Close the browser.
+        self.driver.quit()
+        
+if __name__ == '__main__':
