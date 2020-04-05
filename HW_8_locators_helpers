@@ -1,0 +1,125 @@
+
+import unittest
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import locators as lc
+import xpathHELPERS as xpH
+# import HtmlTestRunner
+
+
+class ChromeSearch(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
+
+    def test_search(self):
+        driver = self.driver
+        driver.get(lc.pr_url)   # import from locators
+
+        # Check that an element is present on the DOM of a page and visible.
+        try:
+            WebDriverWait(driver, 20) \
+                .until(EC.visibility_of_element_located((By.XPATH, xpH.logo)))   # import from xpathHELPERS
+            print("California Real Estate Page is ready!")
+        except TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file('page_loading_error.png')
+
+        # Checking page title for "California Real Estate" then print it
+        self.assertIn("California Real Estate", driver.title)
+        print("Page has", driver.title + " as Page title")
+
+        my_name = driver.find_element_by_name("g2-name")
+        my_name.clear()
+        my_name.send_keys("Inesa")
+        my_name.send_keys(Keys.RETURN)
+        driver.implicitly_wait(20)
+
+        my_name = driver.find_element_by_name("g2-email")
+        my_name.clear()
+        my_name.send_keys("innadia2014@gmail.com")
+        my_name.send_keys(Keys.RETURN)
+        driver.implicitly_wait(20)
+
+        try:
+            WebDriverWait(driver, 20) \
+                .until(EC.visibility_of_element_located((By.XPATH, "//a[contains(text(),'go back')]")))
+            print("Message Send Page is ready!")
+        except TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file('send_page_loading_error.png')
+
+        my_name = driver.find_element_by_xpath(xpH.go_back)   # import from xpathHELPERS
+        my_name.click()
+
+        assert "No results found." not in driver.page_source
+
+        wait = WebDriverWait(driver, 20)
+        wait.until(EC.visibility_of_element_located((By.XPATH, xpH.pic1)))  # import from xpathHELPERS
+        wait.until(EC.visibility_of_element_located((By.XPATH, xpH.pic2)))  # import from xpathHELPERS
+        wait.until(EC.visibility_of_element_located((By.XPATH, xpH.pic3)))  # import from xpathHELPERS
+        wait.until(EC.visibility_of_element_located((By.XPATH, xpH.pic4)))  # import from xpathHELPERS
+
+        self.assertIn("California Real Estate – QA at Silicon Valley Real Estate", driver.title)
+        print("Page ", driver.title + " has four pictures")
+
+
+    def test_search_1120x550(self):
+        driver = self.driver
+        driver.set_window_size(1120, 550)
+        driver.get(lc.pr_url)   # import from locators
+
+        # Check that an element is present on the DOM of a page and visible.
+        try:
+            WebDriverWait(driver, 20) \
+                .until(EC.visibility_of_element_located((By.XPATH, xpH.logo)))   # import from xpathHELPERS
+            print("California Real Estate Page is ready!")
+        except TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file('page_loading_error.png')
+
+        # Checking page title for "California Real Estate" then print it
+        self.assertIn("California Real Estate", driver.title)
+        print("Page has", driver.title + " as Page title")
+
+        my_name = driver.find_element_by_name("g2-name")
+        my_name.clear()
+        my_name.send_keys("Inesa")
+        my_name.send_keys(Keys.RETURN)
+        driver.implicitly_wait(20)
+
+        my_name = driver.find_element_by_name("g2-email")
+        my_name.clear()
+        my_name.send_keys("innadia2014@gmail.com")
+        my_name.send_keys(Keys.RETURN)
+        driver.implicitly_wait(20)
+
+        try:
+            WebDriverWait(driver, 20) \
+                .until(EC.visibility_of_element_located((By.XPATH, "//a[contains(text(),'go back')]")))
+            print("Message Send Page is ready!")
+        except TimeoutException:
+            print("Loading took too much time!")
+            driver.get_screenshot_as_file('send_page_loading_error.png')
+
+        my_name = driver.find_element_by_xpath(xpH.go_back)   # import from xpathHELPERS
+        my_name.click()
+
+        assert "No results found." not in driver.page_source
+
+        wait = WebDriverWait(driver, 20)
+        wait.until(EC.visibility_of_element_located((By.XPATH, xpH.pic1)))  # import from xpathHELPERS
+        wait.until(EC.visibility_of_element_located((By.XPATH, xpH.pic2)))  # import from xpathHELPERS
+        wait.until(EC.visibility_of_element_located((By.XPATH, xpH.pic3)))  # import from xpathHELPERS
+        wait.until(EC.visibility_of_element_located((By.XPATH, xpH.pic4)))  # import from xpathHELPERS
+
+        self.assertIn("California Real Estate – QA at Silicon Valley Real Estate", driver.title)
+        print("Page ", driver.title + " has four pictures")
+
+if __name__ == "__main__":
+    unittest.main()
